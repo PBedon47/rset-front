@@ -87,7 +87,7 @@ export default function App() {
   return (
     <>
       <div className="bgfx" aria-hidden="true"><i /><i /><i /></div>
-      <nav><div className="wrap"><b><img className="logo" src={logo} alt="R-set" /></b>
+      <nav><div className="wrap"><b><img className="logo" src={logo} alt="R-set" /><img className="logo logoN" src={logoLight} alt="R-set" /></b>
         <div className="menu"><a href="#ritual">Ritual</a><a href="#hierbas">Ingredientes</a><a href="#botella">Botella</a><a href="#nosotros">Nosotros</a><a href="#comunidad">Comunidad</a><a className="btn cta" href="#ritual">Desbloquea tu calma</a></div></div></nav>
 
       <header className="hz">

@@ -480,3 +480,11 @@ footer::before{
   .steps .stp:hover b{transform:rotate(-12deg) scale(1.1)}
 }
 @media(prefers-reduced-motion:reduce){.steps .stp,.steps .stp b{transition:none}}
+/* logo del menú según el modo */
+.logoN{display:none}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) nav .logo:not(.logoN){display:none}
+  :root:not([data-theme="light"]) nav .logoN{display:block}
+}
+:root[data-theme="dark"] nav .logo:not(.logoN){display:none}
+:root[data-theme="dark"] nav .logoN{display:block}
