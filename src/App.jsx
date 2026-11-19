@@ -59,6 +59,26 @@ function Social({ href, icon, title, sub, off }) {
 export default function App() {
   const [herb, setHerb] = useState('lui')
   const [view, setView] = useState(0)
+  const [hide, setHide] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    let last = scrollY, ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const y = Math.max(scrollY, 0)
+        setScrolled(y > 8)
+        if (Math.abs(y - last) > 8) {
+          setHide(y > last && y > 120)  // baja: se oculta; sube: aparece
+          last = y
+        }
+        ticking = false
+      })
+    }
+  addEventListener('scroll', onScroll, { passive: true })
+  return () => removeEventListener('scroll', onScroll)
+}, [])
   const [shared, setShared] = useState(false)
   const share = async () => {
   const data = { title: 'R-set', text: 'Tu pausa, tu ritmo. Conoce R-set.', url: location.href.split('#')[0] }
@@ -87,7 +107,7 @@ export default function App() {
   return (
     <>
       <div className="bgfx" aria-hidden="true"><i /><i /><i /></div>
-      <nav><div className="wrap"><b><img className="logo" src={logo} alt="R-set" /><img className="logo logoN" src={logoLight} alt="R-set" /></b>
+      <nav className={(hide ? 'hide ' : '') + (scrolled ? 'scrolled' : '')}><div className="wrap"><b><img className="logo" src={logo} alt="R-set" /><img className="logo logoN" src={logoLight} alt="R-set" /></b>
         <div className="menu"><a href="#ritual">Ritual</a><a href="#hierbas">Ingredientes</a><a href="#botella">Botella</a><a href="#nosotros">Nosotros</a><a href="#comunidad">Comunidad</a><a className="btn cta" href="#ritual">Desbloquea tu calma</a></div></div></nav>
 
       <header className="hz">
