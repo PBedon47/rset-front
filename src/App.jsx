@@ -59,6 +59,15 @@ function Social({ href, icon, title, sub, off }) {
 export default function App() {
   const [herb, setHerb] = useState('lui')
   const [view, setView] = useState(0)
+  const [shared, setShared] = useState(false)
+  const share = async () => {
+  const data = { title: 'R-set', text: 'Tu pausa, tu ritmo. Conoce R-set.', url: location.href.split('#')[0] }
+    try {
+      if (navigator.share) { await navigator.share(data); return }
+      await navigator.clipboard.writeText(data.url)
+      setShared(true); setTimeout(() => setShared(false), 2200)
+    } catch { /* el usuario canceló */ }
+  }
   const car = useRef(), paused = useRef(false)
   const H = HERBS[herb]
 
@@ -106,7 +115,11 @@ export default function App() {
         <div className="ritg">
           <div className="rtx"><span className="kick"><Sparkles size={15} /> Escaneaste tu botella</span><h2>Tu ritual de calma empieza aquí</h2>
             <p className="lead">Música para bajar el ritmo, una comunidad que te recuerda descansar y contenido para tu pausa. Todo a un toque.</p>
-            <div className="steps"><div><b><Wind size={17} /></b>Respira</div><div><b><Headphones size={17} /></b>Escucha</div><div><b><Share2 size={17} /></b>Comparte</div></div></div>
+            <div className="steps">
+            <a className="stp" href="#comunidad"><b><Wind size={17} /></b>Respira</a>
+            <a className="stp" href={LINKS.spotify} target="_blank" rel="noopener noreferrer"><b><Headphones size={17} /></b>Escucha</a>
+            <button type="button" className="stp" onClick={share} aria-live="polite"><b><Share2 size={17} /></b>{shared ? '¡Enlace copiado!' : 'Comparte'}</button>
+          </div></div>
           <div className="phone"><div className="av">R</div><b>@rset_official</b><p>Tu centro de calma</p>
             <Social href={LINKS.instagram} icon={<Instagram size={20} />} title="Únete a la comunidad" sub="Instagram · @rset_official" />
             <Social href={LINKS.spotify} icon={<Spotify size={20} />} title="R-set Sounds" sub="Spotify · Playlist para tu pausa" />
@@ -142,10 +155,40 @@ export default function App() {
         <div className="cols"><Breath /><Poll /></div>
       </div></section>
 
-      <footer><div className="wrap"><div className="fg"><div><img className="logoL" src={logoLight} alt="R-set" /></div>
-        <div><a href={LINKS.instagram} target="_blank" rel="noopener noreferrer"><Instagram size={18} />Instagram</a><a href={LINKS.spotify} target="_blank" rel="noopener noreferrer"><Spotify size={18} />Spotify</a>
-          {tiktokOff ? <a aria-disabled="true" style={{ opacity: .6 }} onClick={e => e.preventDefault()}><TikTok size={18} />TikTok · Próximamente</a> : <a href={LINKS.tiktok} target="_blank" rel="noopener noreferrer"><TikTok size={18} />TikTok</a>}</div></div>
-        <small>© 2026 R-set. Infusión tradicional de hierbas; no es un medicamento ni sustituye la consulta con un profesional de la salud.</small></div></footer>
+      <footer>
+  <div className="wrap">
+    <div className="fg">
+      <div className="fb">
+        <img className="logoL" src={logoLight} alt="R-set" />
+        <img className="logoD" src={logo} alt="R-set" />
+        <p>Tu pausa, tu ritmo. Infusión de hierbas tradicionales para bajar el ritmo sin culpa.</p>
+      </div>
+
+      <div className="fn" role="navigation" aria-label="Secciones del sitio">
+        <h4>Explora</h4>
+        <a href="#ritual">Ritual</a>
+        <a href="#hierbas">Ingredientes</a>
+        <a href="#botella">Botella</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#comunidad">Comunidad</a>
+      </div>
+
+      <div className="fs">
+        <h4>Síguenos</h4>
+        <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram de R-set (abre en una pestaña nueva)"><Instagram size={18} />Instagram</a>
+        <a href={LINKS.spotify} target="_blank" rel="noopener noreferrer" aria-label="Spotify de R-set (abre en una pestaña nueva)"><Spotify size={18} />Spotify</a>
+        {tiktokOff
+          ? <span className="soon" aria-disabled="true"><TikTok size={18} />TikTok<em>Pronto</em></span>
+          : <a href={LINKS.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok de R-set (abre en una pestaña nueva)"><TikTok size={18} />TikTok</a>}
+      </div>
+    </div>
+
+    <div className="fl">
+      <small>© 2026 R-set. Infusión tradicional de hierbas; no es un medicamento ni sustituye la consulta con un profesional de la salud.</small>
+      <a className="up" href="#"><span>Volver arriba</span> <i aria-hidden="true">↑</i></a>
+    </div>
+  </div>
+</footer>
 
       <div className="dock"><a href="#ritual"><Sparkles size={16} />Mi ritual</a><a href="#comunidad"><Wind size={16} />Respira 4-7-8</a></div>
       <Leaves /><Fx />
