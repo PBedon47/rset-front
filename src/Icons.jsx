@@ -1,0 +1,4 @@
+const P = { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }
+export const Spotify = ({ size = 22 }) => (<svg {...P} width={size} height={size}><circle cx="12" cy="12" r="10" /><path d="M6.8 9.4c3.7-1.1 7.6-.8 10.6 1" /><path d="M7.4 12.7c3-.8 5.8-.5 8.3.9" /><path d="M8 15.9c2.2-.6 4.2-.4 6 .6" /></svg>)
+export const TikTok = ({ size = 22 }) => (<svg {...P} width={size} height={size}><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" /><path d="M14 3c.3 2.4 1.9 4 4.5 4.2" /></svg>)
+export const Flower = ({ size = 22, color = 'currentColor' }) => (<svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">{[0, 72, 144, 216, 288].map(a => <ellipse key={a} cx="12" cy="6.5" rx="3" ry="4.5" fill={color} transform={`rotate(${a} 12 12)`} />)}<circle cx="12" cy="12" r="2.6" fill="#BCA571" /></svg>)
