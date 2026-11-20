@@ -1,7 +1,7 @@
 export const LINKS = {
   instagram: 'https://www.instagram.com/rset_official/',
   spotify: 'https://open.spotify.com/playlist/6kSTgUZipxd9jIXzgd0ljt?si=hXirnBVZTWa2_xrVqFcFhg&utm_source=whatsapp&pi=XfE3ys3ERm2kF&sci=spotify%3Acard-config%3A2tqPmoBYAIHtMEApEyaS7y',
-  tiktok: '' // <- pega aquí el enlace de TikTok cuando lo tengas; mientras esté vacío se muestra "Próximamente"
+  tiktok: 'https://www.tiktok.com/@rset409'
 }
 export const HERBS = {
   lui: { c: '#C3D2BD', t: 'Hierba luisa', s: 'Fresca y cítrica', img: 'luisa', l: ['Aroma cítrico y fresco que despierta los sentidos con suavidad.', 'Tradicionalmente se toma para sentirte más ligero y despejado.', 'Un sabor suave que invita a bajar el ritmo.'] },
