@@ -171,7 +171,7 @@ export default function App() {
       </div></section>
 
       <section id="comunidad" className="com"><div className="wrap">
-        <span className="kick"><Instagram size={15} /> Canal de difusión</span><h2>Ese amigo que te recuerda descansar</h2><p className="lead">Mensajes empáticos y cercanos en el canal de difusión de Instagram.</p>
+        <span className="kick"><Instagram size={15} /> Canal de difusión</span><h2>Ese amigo que te recuerda descansar</h2><p className="lead">No es empezar desde cero; es empezar desde la experiencia con un nuevo R-SET</p>
         <div className="cols"><Breath /><Poll /></div>
       </div></section>
 
